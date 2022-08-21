@@ -40,3 +40,10 @@ app.listen(app.get("port"), () => {
 0820 3일 차
 
 [day03.txt](https://github.com/hyounji375/NodeJS/files/9387283/day03.txt)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+0821 4일 차
+
+[day04.txt](https://github.com/hyounji375/NodeJS/files/9389179/day04.txt)
+
