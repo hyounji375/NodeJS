@@ -84,3 +84,8 @@ vs코드에서 js 파일을 만들어서 각 파일마다 서버를 실행하고
 
 [day05.txt](https://github.com/hyounji375/NodeJS/files/9438100/day05.txt)
 
+0829 5일 차 내용 복습
+
+1. sequelize를 이용해서 VSCode에서 데이터베이스를 설정하고 테이블과 필드 생성.
+2. mySQL에서 데이터베이스를 만들고 VSCode에서 만든 테이블 
+
