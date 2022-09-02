@@ -108,3 +108,7 @@ vs코드에서 js 파일을 만들어서 각 파일마다 서버를 실행하고
 
 [day06.txt](https://github.com/hyounji375/NodeJS/files/9479882/day06.txt)
 
+3. jwt 토큰
+4. 세션
+5. passport를 이용한 로그인 로직
+
