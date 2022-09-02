@@ -1,12 +1,16 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 
 const app = express();
 app.set("port", 3000);
 
 app.use(cookieParser("secret"));
 //cookieParser를 사용해야 res.cookie가 가능
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+dotenv.config();
 
 app.post("/setcookie", (req, res, next) => {
   try {
@@ -16,7 +20,6 @@ app.post("/setcookie", (req, res, next) => {
       //쿠키 이름을 정해주고 쿠키에 객체를 담음.
       {
         token: "token",
-
         expired: 5 * 60000,
         //프론트엔드한테도 알려주는 것
       },
@@ -24,7 +27,7 @@ app.post("/setcookie", (req, res, next) => {
         maxAge: 5 * 60000,
         //생명 주기 5분
 
-        // httpOnly: true,
+        httpOnly: true,
         // http 통신으로만 사용할 수 있다. 웹 서버를 통해서만 사용 가능.
         // secure: true,
         // https에서만 사용이 가능
@@ -53,6 +56,37 @@ app.post("/clearcookie", (req, res) => {
   res.send({ message: "success" });
 });
 //쿠키 삭제.
+
+//jwt 토큰 : json 형태의 데이터를 암호화한다.
+
+app.post("/jwtsetcookie", (req, res, next) => {
+  try {
+    const token = jwt.sign(
+      { email: req.body.email },
+      process.env.JWT_TOKEN_KEY
+    );
+    //sign(암호화하고 싶은 정보, 암호화할 키 이름)
+    res.cookie("access_token", token, { httpOnly: true });
+    res.header("authorize", token);
+    res.send({ message: "success" });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
+app.get("/jwtshowcookie", (req, res) => {
+  const token = req.cookies.access_token;
+  console.log(jwt.verify(token, process.env.JWT_TOKEN_KEY));
+  //복호화
+  //console.log(jwt.decode(token)); 이렇게 하면 복호화할 수 있는 키가 없다. 하지만 키가 없어도 복호화가 가능하다.
+  //verify는 복호화 키가 필요하며 정상적인 토큰인지 검사.
+  //decode는 복호화 키 없이 jwt 토큰을 해석.
+  res.send(req.cookies.access_token);
+});
+
+//iat는 jwt 메모리 주소
+
 app.listen(app.get("port"), () => {
   console.log(`${app.get("port")}번에서 서버 실행 중`);
 });
