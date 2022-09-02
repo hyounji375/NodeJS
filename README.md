@@ -106,4 +106,5 @@ vs코드에서 js 파일을 만들어서 각 파일마다 서버를 실행하고
 
 0902 6일 차 수업 겸 복습
 
+[day06.txt](https://github.com/hyounji375/NodeJS/files/9479882/day06.txt)
 
