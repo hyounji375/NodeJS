@@ -6,6 +6,7 @@ import user from "./routes/user.js";
 import session from "express-session";
 import passport from "passport";
 import passportConfig from "./passport/index.js";
+import post from "./routes/post.js";
 
 const app = express();
 app.set("port", 3000);
@@ -37,6 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/user", user);
+app.use("/post", post);
 
 app.listen(app.get("port"), () => {
   console.log(`${app.get("port")}번 서버 실행 중`);
