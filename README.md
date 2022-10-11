@@ -133,3 +133,6 @@ vs코드에서 js 파일을 만들어서 각 파일마다 서버를 실행하고
 - https://www.백엔드주소:3000/goods?goodsID=32&goodsname="맛있는 수박"
 - goddsID 속성의 값은 32, goodsname 속성의 값은 맛있는 수박이다.
 - 속성과 값이 다 들어있다.
+- param과 달리 Route path에는 "/goods"까지만 적어도 된다.
+
+
